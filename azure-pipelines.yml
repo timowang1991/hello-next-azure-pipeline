@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: hello-next-pipelines-variables
+- group: hello-next-pipeline-variables
 
 steps:
 - script: |
