@@ -9,13 +9,12 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+variables:
+- group: hello-next-pipelines-variables
 
+steps:
 - script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    docker build -t $(dockerId)/$(imageName) .
+    docker login -u $(dockerId) -p $(dockerPswd)
+    docker push $(dockerId)/$(imageName)
+  displayName: 'Build docker image and push image'
